@@ -224,7 +224,7 @@ public class ViewMood extends AppCompatActivity {
                     }else {
                         int emotionEnum = emotionSpinner.getSelectedItemPosition();
                         int socialEnum = socialSituationSpinner.getSelectedItemPosition();
-                        if (position == -1) {
+                        if (position == -1 && moodImage.getTag() != null) {
                             setPhotoPath = moodImage.getTag().toString();
                             base64 = convertToBase64(setPhotoPath);
                             mood.setImage(base64);
