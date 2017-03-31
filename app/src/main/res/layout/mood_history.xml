@@ -36,11 +36,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/display_mood_list"
-        android:layout_marginEnd="43dp"
-        android:layout_marginRight="43dp"
+        android:layout_alignTop="@+id/moreMoods"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
         android:clickable="true"
+        app:backgroundTint="@color/wallet_hint_foreground_holo_dark"
         app:fabSize="mini"
         app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+
+    <Button
+        android:id="@+id/moreMoods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/load_more"
+        tools:text="@string/load_more"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
