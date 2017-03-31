@@ -57,7 +57,7 @@
         android:singleLine="true" />
 
     <TextView
-        android:text="CCID"
+        android:text="Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/userName"

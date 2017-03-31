@@ -6,7 +6,7 @@
     <ViewSwitcher
         android:id="@+id/messageSwitcher"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="450dp">
 
         <ListView
             android:id="@+id/commentsView"
@@ -24,5 +24,14 @@
             tools:text="@string/no_comment" />
 
     </ViewSwitcher>
+
+    <Button
+        android:id="@+id/loadMoreComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/load_comments"
+        tools:text="@string/load_comments" />
 
 </RelativeLayout>

@@ -58,22 +58,6 @@ public class ViewMoodList extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                mood = new Mood();
-//                Intent intent = new Intent(ViewMoodList.this, ViewMood.class);
-//                intent.putExtra("PLACEHOLDER_MOOD", mood);
-//                startActivityForResult(intent, 0);
-//
-//                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                //        .setAction("Action", null).show();
-//
-//            }
-//        });
-
     }
 
     @Override
@@ -89,9 +73,6 @@ public class ViewMoodList extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_filter:
-                Toast.makeText(this, "Filters", Toast.LENGTH_SHORT).show();
-                return true;
             case R.id.show_map:
                 Toast.makeText(this,"Showing Map", Toast.LENGTH_SHORT).show();
                 Intent intentMap = new Intent();

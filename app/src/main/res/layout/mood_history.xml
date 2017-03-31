@@ -24,7 +24,7 @@
     <ListView
         android:id="@+id/display_mood_list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:scrollbars="vertical"
         android:layout_alignBottom="@+id/fab">
 

@@ -3,6 +3,7 @@ package com.example.moodly.Activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
@@ -17,6 +18,7 @@ public class ViewComments extends AppCompatActivity {
     ArrayList<Comment> commentList = new ArrayList<>();
     ListView displayCommentList;
     TextView displayNoComment;
+    Button loadMoreComments;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +34,10 @@ public class ViewComments extends AppCompatActivity {
         ViewSwitcher viewSwitcher = (ViewSwitcher)findViewById(R.id.messageSwitcher);
         displayCommentList = (ListView) findViewById(R.id.commentsView);
         displayNoComment = (TextView) findViewById(R.id.noComments);
+        loadMoreComments = (Button) findViewById(R.id.loadMoreComments);
         if (commentList.size() == 0){
             viewSwitcher.showNext();
+            loadMoreComments.setEnabled(false);
         }
         else {
             ArrayAdapter<Comment> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, commentList);

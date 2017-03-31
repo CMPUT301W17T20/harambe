@@ -1,11 +1,13 @@
 package com.example.moodly.Activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -94,8 +96,9 @@ public class SocialUserSearch extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
-
+        // Taken from http://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
+        InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getView().getRootView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         // Create SparseBooleanArray to check selected items
         SparseBooleanArray checked = displayUserList.getCheckedItemPositions();
         // Create Array list of username strings
@@ -122,9 +125,8 @@ public class SocialUserSearch extends Fragment implements View.OnClickListener {
                 EditText searchView = (EditText) rootView.findViewById(R.id.search_text);
                 String searchString = searchView.getText().toString();
                 userList = userController.searchUsers(searchString);
-                adapter = new ArrayAdapter<String>(getActivity(), R.layout.user_list_item, userList);
+                adapter = new ArrayAdapter<>(getActivity(), R.layout.user_list_item, userList);
                 displayUserList.setAdapter(adapter);
-
                 break;
             case R.id.send_request_button:
                 userController.makeRequest(outputStrArr);
