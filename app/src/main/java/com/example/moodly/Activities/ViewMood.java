@@ -23,6 +23,7 @@ import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -115,6 +116,7 @@ public class ViewMood extends AppCompatActivity {
             action.setTitle("Viewing Mood Event");
         }
         setViews();
+        setColor();
         setListeners();
     }
 
@@ -456,5 +458,32 @@ public class ViewMood extends AppCompatActivity {
         }
     }
 
+    protected void setActivityBackgroundColor(int color) {
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(color);
+    }
+
+    protected void setColor(){
+        emotionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int mood = emotionSpinner.getSelectedItemPosition();
+
+                if (mood == 1) {setActivityBackgroundColor(Color.parseColor("#E53935"));}
+                if (mood == 2) {setActivityBackgroundColor(Color.parseColor("#BA68C8"));}
+                if (mood == 3) {setActivityBackgroundColor(Color.parseColor("#4CAF50"));}
+                if (mood == 4) {setActivityBackgroundColor(Color.parseColor("#FFA726"));}
+                if (mood == 5) {setActivityBackgroundColor(Color.parseColor("#FFEE58"));}
+                if (mood == 6) {setActivityBackgroundColor(Color.parseColor("#2196F3"));}
+                if (mood == 7) {setActivityBackgroundColor(Color.parseColor("#F06292"));}
+                if (mood == 8) {setActivityBackgroundColor(Color.parseColor("#FFFFFF"));}
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+        });
+    }
 }
 
