@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
     <ImageView
@@ -8,28 +8,51 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="end"
-        android:layout_marginRight="50dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
         android:src="@drawable/afraid" />
+
+    <TextView
+        android:id="@+id/mood_emotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mood_date"
+        android:layout_alignLeft="@+id/emoji"
+        android:layout_alignStart="@+id/emoji"
+        android:layout_marginLeft="60dp"
+        android:layout_marginStart="60dp"
+        android:text="placeholder"
+        android:textAlignment="textStart"
+        android:textAppearance="@android:style/TextAppearance"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/mood_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_vertical"
         android:text="placeholder"
+        android:textAlignment="textStart"
+        android:textSize="12sp"
+        android:layout_marginBottom="5dp"
         android:layout_alignBottom="@+id/emoji"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignLeft="@+id/mood_emotion"
+        android:layout_alignStart="@+id/mood_emotion" />
+
 
     <TextView
-        android:id="@+id/mood_emotion"
-        android:layout_width="100dp"
+        android:id="@+id/nothingToSeeHere"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="placeholder"
-        android:layout_below="@+id/emoji"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textAppearance="@android:style/TextAppearance" />
+        android:text="Me"
+        android:textAppearance="@android:style/TextAppearance"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_gravity="center_vertical"
+        android:layout_alignBottom="@+id/mood_emotion"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

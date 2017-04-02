@@ -85,6 +85,8 @@ public class MoodAdapter extends ArrayAdapter<Mood> {
     }
 
     private void setBackground(MoodHolder holder, View row) {
+<<<<<<< HEAD
+<<<<<<< Updated upstream
         if (holder.mood.getEmotion() == 1) {row.setBackgroundColor(Color.parseColor("#E57373"));}
         if (holder.mood.getEmotion() == 2) {row.setBackgroundColor(Color.parseColor("#B39DDB"));}
         if (holder.mood.getEmotion() == 3) {row.setBackgroundColor(Color.parseColor("#66BB6A"));}
@@ -92,6 +94,20 @@ public class MoodAdapter extends ArrayAdapter<Mood> {
         if (holder.mood.getEmotion() == 5) {row.setBackgroundColor(Color.parseColor("#FFF176"));}
         if (holder.mood.getEmotion() == 6) {row.setBackgroundColor(Color.parseColor("#42A5F5"));}
         if (holder.mood.getEmotion() == 7) {row.setBackgroundColor(Color.parseColor("#90A4AE"));}
+=======
+=======
+>>>>>>> bhinse-branch
+        if (holder.mood.getEmotion() == 1) {row.setBackgroundColor(Color.parseColor("#f1646c"));}
+        if (holder.mood.getEmotion() == 2) {row.setBackgroundColor(Color.parseColor("#7971b4"));}
+        if (holder.mood.getEmotion() == 3) {row.setBackgroundColor(Color.parseColor("#9dd5c0"));}
+        if (holder.mood.getEmotion() == 4) {row.setBackgroundColor(Color.parseColor("#fac174"));}
+        if (holder.mood.getEmotion() == 5) {row.setBackgroundColor(Color.parseColor("#fff280"));}
+        if (holder.mood.getEmotion() == 6) {row.setBackgroundColor(Color.parseColor("#27a4dd"));}
+        if (holder.mood.getEmotion() == 7) {row.setBackgroundColor(Color.parseColor("#f39cc3"));}
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> bhinse-branch
         if (holder.mood.getEmotion() == 8) {row.setBackgroundColor(Color.parseColor("#FFFFFF"));}
     }
 

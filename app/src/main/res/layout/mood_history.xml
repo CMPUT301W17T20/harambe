@@ -12,37 +12,70 @@
         android:layout_height="wrap_content"
         />
 
+    <ListView
+        android:id="@+id/display_mood_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        android:layout_alignParentBottom="true">
+
+    </ListView>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_input_add"
-        android:layout_marginBottom="51dp"
+        android:rotation="45.0"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentRight="true"
+        android:elevation="10dp"
+        android:layout_marginRight="15dp"
+<<<<<<< HEAD
+        android:layout_marginBottom="10dp"
+        />
 
     <ListView
         android:id="@+id/display_mood_list"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:scrollbars="vertical"
-        android:layout_alignBottom="@+id/fab">
+        android:layout_alignParentBottom="true">
+=======
+        android:layout_marginBottom="15dp"
+        />
 
-    </ListView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/filterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="34dp"
-        android:layout_marginRight="34dp"
+        android:layout_marginRight="10dp"
         android:clickable="true"
-        app:backgroundTint="@color/wallet_hint_foreground_holo_dark"
         app:fabSize="mini"
+        android:elevation="0dp"
+        android:layout_alignBaseline="@id/fab"
         app:srcCompat="@android:drawable/ic_menu_sort_by_size"
-        android:layout_alignTop="@+id/moreMoods"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginBottom="15dp"
+        android:layout_toLeftOf="@id/fab"
+        android:layout_alignParentBottom="true"
+>>>>>>> bhinse-branch
+
+ />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/filterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:clickable="true"
+        app:fabSize="mini"
+        android:elevation="0dp"
+        android:layout_alignBaseline="@id/fab"
+        app:srcCompat="@android:drawable/ic_menu_sort_by_size"
+        android:layout_marginBottom="10dp"
+        android:layout_toLeftOf="@id/fab"
+        android:layout_alignParentBottom="true"/>
 
     <Button
         android:id="@+id/moreMoods"
@@ -50,6 +83,7 @@
         android:layout_height="wrap_content"
         android:text="@string/load_more"
         tools:text="@string/load_more"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -58,8 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/moreMoods"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/section_label"
         android:layout_toRightOf="@+id/section_label"
         android:clickable="true"

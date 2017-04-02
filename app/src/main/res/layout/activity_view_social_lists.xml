@@ -29,7 +29,12 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             app:tabMode="scrollable"/>
+=======
+            android:visibility="visible"
+            app:tabMode="scrollable" />
+>>>>>>> bhinse-branch
 
     </android.support.design.widget.AppBarLayout>
 

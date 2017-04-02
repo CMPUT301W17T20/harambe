@@ -5,48 +5,70 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/f_mood_emotion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="placeholder"
-        android:layout_below="@+id/f_emoji"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/f_mood_owner"
-        android:layout_alignEnd="@+id/f_mood_owner"
-        android:textAppearance="@android:style/TextAppearance" />
-
-    <TextView
-        android:id="@+id/f_mood_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="placeholder"
-        android:layout_above="@+id/f_mood_emotion"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:id="@+id/f_mood_owner"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="placeholder"
-        android:layout_width="wrap_content"
-        android:textAppearance="@android:style/TextAppearance"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:id="@+id/f_emoji"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="end"
-        android:src="@drawable/afraid"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/afraid" />
+
+    <TextView
+        android:id="@+id/f_mood_emotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/f_mood_date"
+        android:layout_alignLeft="@+id/f_emoji"
+        android:layout_alignStart="@+id/f_emoji"
+        android:layout_marginLeft="60dp"
+        android:layout_marginStart="60dp"
+        android:text="placeholder"
+        android:textAlignment="textStart"
+        android:textAppearance="@android:style/TextAppearance"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/f_mood_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="placeholder"
+        android:textAlignment="textStart"
+        android:textSize="12sp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignBottom="@+id/f_emoji"
+        android:layout_alignLeft="@+id/f_mood_emotion"
+        android:layout_alignStart="@+id/f_mood_emotion" />
+
+    <TextView
+        android:id="@+id/f_mood_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/f_mood_emotion"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="user"
+        android:textAlignment="textEnd"
+        android:textAppearance="@android:style/TextAppearance" />
+<<<<<<< HEAD
+
+    <ImageView
+        android:id="@+id/f_emoji"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/afraid"/>
+=======
+>>>>>>> bhinse-branch
 
 </RelativeLayout>

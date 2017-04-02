@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
 
+<<<<<<< HEAD
     <TextView
         android:id="@+id/locationText"
         android:layout_width="wrap_content"
@@ -16,121 +17,174 @@
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance"
         android:textColor="@color/colorPrimary"
-        android:textStyle="bold|italic"
         tools:text="@string/location"
-        android:layout_below="@+id/ReasonText"
+        android:layout_alignBottom="@+id/mapButton"
+        android:layout_marginLeft="20dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/mapButton"
-        android:layout_toStartOf="@+id/mapButton" />
+        android:layout_alignParentStart="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/cameraButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_menu_camera"
+        android:layout_above="@+id/spinner_emotion"
         android:layout_alignBottom="@+id/moodImage"
-        android:layout_toRightOf="@+id/moodImage"
-        android:layout_toEndOf="@+id/moodImage"
-        android:layout_marginLeft="19dp"
-        android:layout_marginStart="19dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginRight="30dp"
+        android:clickable="true"
+        app:elevation="5dp"
+        app:fabSize="normal"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+=======
+    <ImageView
+        android:id="@+id/moodImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:visibility="visible"
+        app:srcCompat="@drawable/backdrop" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/cameraButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/spinner_emotion"
+        android:layout_alignBottom="@+id/moodImage"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginRight="30dp"
+        android:clickable="true"
+        app:elevation="5dp"
+        app:fabSize="normal"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <TextView
-        android:id="@+id/SocialSituationText"
-        android:layout_width="120dp"
+        android:id="@+id/mood"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/social_situation"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold|italic"
-        tools:text="@string/social_situation"
-        android:layout_toLeftOf="@+id/spinner_SS"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/spinner_SS" />
+        android:layout_above="@+id/spinner_emotion"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="Mood"
+        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/DateText"
-        android:layout_width="69dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/date"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold|italic"
-        tools:text="@string/date"
-        android:layout_alignBaseline="@+id/view_date"
-        android:layout_alignBottom="@+id/view_date"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/view_date"
-        android:layout_toStartOf="@+id/view_date" />
 
     <Spinner
-        android:id="@+id/spinner_SS"
-        android:layout_width="200dp"
+        android:id="@+id/spinner_emotion"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ReasonText"
-        android:layout_alignLeft="@+id/view_reason"
-        android:layout_alignStart="@+id/view_reason"
-        android:layout_marginBottom="20dp" />
-
-    <TextView
-        android:id="@+id/ReasonText"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/reason_text"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        tools:text="@string/reason_text"
-        android:layout_marginBottom="25dp"
-        android:layout_above="@+id/mapButton"
+        android:layout_above="@+id/view_date"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="15dp"
+        android:animateLayoutChanges="true"
+        android:visibility="visible" />
 
-    <EditText
-        android:id="@+id/view_reason"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:layout_alignBottom="@+id/ReasonText"
-        android:layout_toRightOf="@+id/ReasonText"
-        android:layout_toEndOf="@+id/ReasonText" />
 
     <EditText
         android:id="@+id/view_date"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:focusable="false"
+        android:hint="Date  (MM/DD/YYYY)"
         android:inputType="textPersonName"
+        android:textSize="16sp" />
+>>>>>>> bhinse-branch
+
+    <Spinner
+        android:id="@+id/spinner_SS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/view_date"
+        android:hint="Social Situation"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="12dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/ReasonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner_SS"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Reason"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/view_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ReasonText"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:ems="20"
+        android:hint="Why are you in this mood?"
+        android:inputType="textPersonName"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textSize="16sp"
+        android:visibility="visible" />
+<<<<<<< HEAD
+
+    <EditText
+        android:id="@+id/view_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/SocialSituationText"
-        android:layout_alignRight="@+id/spinner_SS"
-        android:layout_alignEnd="@+id/spinner_SS" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Date  (MM/DD/YYYY)"
+        android:inputType="textPersonName"
+        android:textSize="16sp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        app:elevation="2dp"
         app:fabSize="mini"
         app:srcCompat="@android:drawable/ic_menu_mylocation"
+        android:layout_marginLeft="72dp"
+        android:layout_marginStart="72dp"
         android:layout_above="@+id/viewMoodComments"
-        android:layout_toRightOf="@+id/ReasonText"
-        android:layout_toEndOf="@+id/ReasonText"
-        android:layout_marginBottom="10dp" />
+        android:layout_toRightOf="@+id/locationText"
+        android:layout_toEndOf="@+id/locationText"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:id="@+id/EmotionText"
@@ -151,46 +205,102 @@
 
     <Spinner
         android:id="@+id/spinner_emotion"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/DateText"
-        android:layout_alignLeft="@+id/view_date"
-        android:layout_alignStart="@+id/view_date"
-        android:layout_marginBottom="20dp" />
+        android:layout_above="@+id/view_date"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="15dp"
+        android:animateLayoutChanges="true"
+        android:visibility="visible" />
 
     <ImageView
         android:id="@+id/moodImage"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp" />
+        android:layout_marginBottom="10dp"
+        android:visibility="visible"
+        app:srcCompat="@drawable/backdrop" />
 
     <Button
         android:id="@+id/viewMoodComments"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/view_comment"
         tools:text="@string/view_comment"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="46dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toStartOf="@+id/saveButton"
+        android:layout_toLeftOf="@+id/saveButton" />
 
     <Button
         android:id="@+id/saveButton"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="@string/save_mood"
-        tools:text="@string/save_mood"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+=======
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/mapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:elevation="2dp"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_mylocation"
+        android:layout_marginLeft="72dp"
+        android:layout_marginStart="72dp"
+        android:layout_above="@+id/viewMoodComments"
+        android:layout_toRightOf="@+id/locationText"
+        android:layout_toEndOf="@+id/locationText"
+        android:layout_marginBottom="20dp" />
+
+
+    <TextView
+        android:id="@+id/locationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance"
+        android:textColor="@color/colorPrimary"
+        tools:text="@string/location"
+        android:layout_alignBottom="@+id/mapButton"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/viewMoodComments"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toStartOf="@+id/saveButton"
+        android:text="@string/view_comment"
+        tools:text="@string/view_comment" />
+
+    <Button
+        android:id="@+id/saveButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+>>>>>>> bhinse-branch
+        android:layout_toEndOf="@+id/mapButton"
+        android:text="@string/save_mood"
+        android:visibility="visible"
+        tools:text="@string/save_mood" />
 
 </RelativeLayout>

@@ -12,41 +12,38 @@
     tools:context="com.example.moodly.Activities.LoginScreen">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/salt"
+        app:srcCompat="@drawable/logo"
         android:id="@+id/imageView2"
-        android:layout_marginBottom="239dp"
+        android:layout_marginBottom="220dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="@string/Register"
+    <TextView
+<<<<<<< HEAD
+        android:text="Username"
+=======
+        android:text="CCID"
+>>>>>>> bhinse-branch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
-        android:id="@+id/Register"
-        tools:text="@string/Register"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="@string/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Login"
-        tools:text="@string/login"
-        android:layout_above="@+id/Register"
-        android:layout_alignLeft="@+id/Register"
-        android:layout_alignStart="@+id/Register"
-        android:layout_marginBottom="8dp" />
+        android:layout_above="@+id/userName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/itSaysUserName" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
+<<<<<<< HEAD
+        android:hint="Enter Username"
+=======
+        android:hint="Username"
+>>>>>>> bhinse-branch
         android:layout_above="@+id/Login"
         android:layout_marginBottom="25dp"
         android:id="@+id/userName"
@@ -56,13 +53,36 @@
         android:layout_alignParentStart="true"
         android:singleLine="true" />
 
-    <TextView
-        android:text="Username"
+
+    <Button
+        android:id="@+id/Login"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/userName"
+        android:layout_above="@+id/Register"
+        android:layout_alignLeft="@+id/Register"
+        android:layout_alignStart="@+id/Register"
+        android:layout_marginBottom="10dp"
+        android:text="@string/login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="#ffffff"
+        tools:text="@string/login" />
+
+    <Button
+        android:id="@+id/Register"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp"
-        android:id="@+id/itSaysUserName" />
+        android:layout_marginBottom="30dp"
+        android:text="@string/Register"
+        android:textColor="#e74c3c"
+        tools:text="@string/Register" />
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> bhinse-branch
 
 </RelativeLayout>

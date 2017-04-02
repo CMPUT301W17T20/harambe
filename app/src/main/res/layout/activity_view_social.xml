@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<<<<<<< HEAD
 
     <TextView
         android:id="@+id/locationText"
@@ -16,13 +17,11 @@
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance"
         android:textColor="@color/colorPrimary"
-        android:textStyle="bold|italic"
         tools:text="@string/location"
-        android:layout_below="@+id/ReasonText"
+        android:layout_alignBottom="@+id/mapButton"
+        android:layout_marginLeft="20dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/mapButton"
-        android:layout_toStartOf="@+id/mapButton" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/SocialSituationText"
@@ -30,15 +29,49 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
         android:text="@string/social_situation"
+=======
+    <ImageView
+        android:id="@+id/moodImage"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/EmotionText"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/emotion"
+>>>>>>> bhinse-branch
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold|italic"
+<<<<<<< HEAD
         tools:text="@string/social_situation"
         android:layout_toLeftOf="@+id/spinner_SS"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/spinner_SS" />
+=======
+        tools:text="@string/emotion"
+        android:layout_alignBottom="@+id/spinner_emotion"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/spinner_emotion"
+        android:layout_toLeftOf="@+id/spinner_emotion" />
+
+    <Spinner
+        android:id="@+id/spinner_emotion"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/DateText"
+        android:layout_alignLeft="@+id/view_date"
+        android:layout_alignStart="@+id/view_date"
+        android:layout_marginBottom="20dp" />
+>>>>>>> bhinse-branch
 
     <TextView
         android:id="@+id/DateText"
@@ -58,6 +91,35 @@
         android:layout_toLeftOf="@+id/view_date"
         android:layout_toStartOf="@+id/view_date" />
 
+<<<<<<< HEAD
+=======
+    <TextView
+        android:id="@+id/view_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/SocialSituationText"
+        android:layout_alignRight="@+id/spinner_SS"
+        android:layout_alignEnd="@+id/spinner_SS" />
+
+    <TextView
+        android:id="@+id/SocialSituationText"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/social_situation"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold|italic"
+        tools:text="@string/social_situation"
+        android:layout_toLeftOf="@+id/spinner_SS"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/spinner_SS" />
+
+>>>>>>> bhinse-branch
     <Spinner
         android:id="@+id/spinner_SS"
         android:layout_width="200dp"
@@ -91,7 +153,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:layout_alignBottom="@+id/ReasonText"
         android:layout_toRightOf="@+id/ReasonText"
-        android:layout_toEndOf="@+id/ReasonText" />
+<<<<<<< HEAD
+        android:layout_toEndOf="@+id/ReasonText"  />
 
     <TextView
         android:id="@+id/view_date"
@@ -102,6 +165,9 @@
         android:layout_toRightOf="@+id/SocialSituationText"
         android:layout_alignRight="@+id/spinner_SS"
         android:layout_alignEnd="@+id/spinner_SS" />
+=======
+        android:layout_toEndOf="@+id/ReasonText" />
+>>>>>>> bhinse-branch
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/mapButton"
@@ -116,6 +182,7 @@
         android:layout_toEndOf="@+id/ReasonText" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/EmotionText"
         android:layout_width="match_parent"
         android:layout_height="25dp"
@@ -146,34 +213,64 @@
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp" />
+        android:layout_centerHorizontal="true"/>
+=======
+        android:id="@+id/locationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance"
+        android:textColor="@color/colorPrimary"
+        tools:text="@string/location"
+        android:layout_alignBottom="@+id/mapButton"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+>>>>>>> bhinse-branch
 
     <Button
         android:id="@+id/addComments"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/moodImage"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/add_comment"
+        tools:text="@string/add_comment"
+/>
+=======
         android:text="@string/add_comment"
         tools:text="@string/add_comment"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="39dp"
+        android:layout_toRightOf="@+id/moodImage"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+>>>>>>> bhinse-branch
 
     <Button
         android:id="@+id/viewComments"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+        android:text="@string/view_comment"
+        tools:text="@string/view_comment"
+>>>>>>> bhinse-branch
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignRight="@+id/moodImage"
+        android:layout_alignEnd="@+id/moodImage"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
+<<<<<<< HEAD
         android:layout_alignParentStart="true"
         android:text="@string/view_comment"
         tools:text="@string/view_comment" />
+=======
+        android:layout_alignParentStart="true" />
+>>>>>>> bhinse-branch
 
 </RelativeLayout>
