@@ -62,7 +62,8 @@ public class QueryBuilder {
     public void setReason(String reason) {
         this.reason = reason;
     }
-
+    public void clearEmotion() {emotionList.clear();}
+    public void clearReason() {reason = "";}
     // sets the users to be searched for
     // for moods class, please set this in GetMoodTask
     public void setUsers(ArrayList<String> usernameArray) {

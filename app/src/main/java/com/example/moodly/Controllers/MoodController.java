@@ -196,6 +196,10 @@ public class MoodController extends ElasticSearchController {
 
     public void setFilterText(String reasonText) { queryBuilder.setReason(reasonText);}
 
+    public void clearEmotion() {queryBuilder.clearEmotion();}
+
+    public void clearFilterText() {queryBuilder.clearReason();}
+
     public Mood getMood() {
         return tempMood;
     }

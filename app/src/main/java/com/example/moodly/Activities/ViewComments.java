@@ -37,7 +37,7 @@ public class ViewComments extends AppCompatActivity {
         loadMoreComments = (Button) findViewById(R.id.loadMore);
         if (commentList.size() == 0){
             viewSwitcher.showNext();
-            loadMoreComments.setEnabled(false);
+            loadMoreComments.setVisibility(Button.INVISIBLE);
         }
         else {
             ArrayAdapter<Comment> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, commentList);

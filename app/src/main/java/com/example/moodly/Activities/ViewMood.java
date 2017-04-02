@@ -175,7 +175,7 @@ public class ViewMood extends AppCompatActivity {
             editDate = (EditText) findViewById(R.id.view_date);
             editReasonText = (EditText) findViewById(R.id.view_reason);
             if (position == -1){
-                viewMoodComment.setEnabled(false);
+                viewMoodComment.setVisibility(Button.INVISIBLE);
             }
             else {
                 editDate.setText(mood.getDate().toString(), TextView.BufferType.EDITABLE);
