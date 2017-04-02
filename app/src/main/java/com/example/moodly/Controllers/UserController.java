@@ -224,6 +224,45 @@ public class UserController extends ElasticSearchController {
     /**
      * Async tasks that gets the list of users from elastic search
      */
+    private static class GetUsersTask extends AsyncTask<String, Void, ArrayList<User>> {
+
+        @Override
+        protected ArrayList<User> doInBackground(String... search_parameters) {
+            verifySettings();
+
+            ArrayList<User> userList = new ArrayList<User>();
+
+            String query = "";
+            // TODO Build the query
+            Search search = new Search.Builder(query)
+                    .addIndex("cmput301w17t20")
+                    .addType("user")
+                    .build();
+
+            try {
+                // get the results of our query
+                SearchResult result = client.execute(search);
+                if(result.isSucceeded()) {
+                    // hits
+                    List<SearchResult.Hit<User, Void>> foundUsers = result.getHits(User.class);
+
+                    for(int i = 0; i < foundUsers.size(); i++) {
+                        User temp = foundUsers.get(i).source;
+
+                        userList.add(temp);
+                    }
+
+                } else {
+                    Log.i("Error", "Search query failed to find any moods that matched");
+                }
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return userList;
+        }
+    }
+
     private static class SearchUsersTask extends AsyncTask<String, Void, ArrayList<User>> {
 
         @Override
@@ -233,9 +272,7 @@ public class UserController extends ElasticSearchController {
             ArrayList<User> userList = new ArrayList<User>();
 
             String query =
-                    "{ \n" +
-                            "\t\"from\" : 0, \"size\" : 50," +
-                            "\n\"query\" : {\n" +
+                    "{ \n\"query\" : {\n" +
                             "    \"match_phrase_prefix\" : { \"name\" : \"" + search_parameters[0] +
                             "\"     }\n " +
                             "    }\n" +
@@ -286,9 +323,7 @@ public class UserController extends ElasticSearchController {
             if (search_parameters.length == 0) {return null;}
 
             String query =
-            "{ \n" +
-                    "\t\"terminate_after\" : 1," +
-                    "\n\"query\" : {\n" +
+            "{ \n\"query\" : {\n" +
                     "    \"match\" : { \"name\" : \"" + search_parameters[0] +
                     "\"     }\n " +
                     "    }\n" +

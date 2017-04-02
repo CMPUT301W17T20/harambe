@@ -13,7 +13,7 @@
         android:id="@+id/display_request_list"
         android:layout_width="match_parent"
         android:layout_height="263dp"
-        android:listSelector="@android:color/darker_gray"
+        android:background="@drawable/selector"
         android:scrollbars="vertical"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

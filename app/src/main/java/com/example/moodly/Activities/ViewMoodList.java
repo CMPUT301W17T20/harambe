@@ -1,13 +1,7 @@
 package com.example.moodly.Activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.content.SharedPreferences;
-
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -18,15 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.widget.Toast;
-
-
-import com.example.moodly.Controllers.MoodController;
-import com.example.moodly.Activities.SocialBase;
-import com.example.moodly.Activities.TabBase;
-import com.example.moodly.Activities.TabHistory;
-import com.example.moodly.Controllers.UserController;
 
 import com.example.moodly.R;
 
@@ -68,47 +54,21 @@ public class ViewMoodList extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        // checks periodically
-        handler = new Handler();
-        synchronizeNetwork.run();
-    }
-
-    private int repeatInterval = 30000;
-    private Handler handler;
-
-    Runnable synchronizeNetwork = new Runnable() {
-        @Override
-        public void run() {
-            try {
-                updateElasticSearch();
-            } finally {
-                // 100% guarantee that this always happens, even if
-                // your update method throws an exception
-                handler.postDelayed(synchronizeNetwork, repeatInterval);
-            }
-        }
-    };
-
-    private void updateElasticSearch() {
-        if (networkAvailable())  {
-            if (MoodController.getInstance().getAddCompletion()) {
-                MoodController.getInstance().syncAddList();
-            }
-            if(MoodController.getInstance().getDeleteCompletion()) {
-                MoodController.getInstance().syncDeleteList();
-            }
-            Toast.makeText(ViewMoodList.this, "Connected", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(ViewMoodList.this, "Not connected", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private boolean networkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                mood = new Mood();
+//                Intent intent = new Intent(ViewMoodList.this, ViewMood.class);
+//                intent.putExtra("PLACEHOLDER_MOOD", mood);
+//                startActivityForResult(intent, 0);
+//
+//                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                //        .setAction("Action", null).show();
+//
+//            }
+//        });
 
     }
 
@@ -125,34 +85,20 @@ public class ViewMoodList extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
+            case R.id.action_filter:
+                Toast.makeText(this, "Filters", Toast.LENGTH_SHORT).show();
+                return true;
             case R.id.show_map:
-                Toast.makeText(this, "Showing Map", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Showing Map", Toast.LENGTH_SHORT).show();
                 Intent intentMap = new Intent();
-                intentMap.setClass(ViewMoodList.this, SeeMap.class);
+                intentMap.setClass(ViewMoodList.this, NearbyMoodActivity.class);
                 startActivity(intentMap);
                 return true;
             case R.id.action_social:
-
-                if (networkAvailable()) {
-                    Toast.makeText(this, "Social", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(this, SocialBase.class);
-                    startActivity(intent);
-                    return super.onOptionsItemSelected(item);
-                }
-                else{
-                    Toast.makeText(this, "Cannot access social tab when offline!", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-
-            case R.id.log_out:
-                Toast.makeText(this, "Goodbye, " + UserController.getInstance().getCurrentUser().getName(), Toast.LENGTH_SHORT).show();
-                SharedPreferences.Editor editor =getApplicationContext().getSharedPreferences(LoginScreen.FILE_NAME, Context.MODE_PRIVATE).edit();
-                editor.clear();
-                editor.commit();
-                Intent logOut = new Intent(this, LoginScreen.class);
-                logOut.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(logOut);
-
+                Toast.makeText(this,"Social", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, SocialBase.class);
+                startActivity(intent);
+                return super.onOptionsItemSelected(item);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -203,8 +149,6 @@ public class ViewMoodList extends AppCompatActivity {
             return null;
         }
     }
-
-
 
 
 }

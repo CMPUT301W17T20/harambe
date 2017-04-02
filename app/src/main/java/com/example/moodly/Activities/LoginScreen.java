@@ -1,10 +1,8 @@
 package com.example.moodly.Activities;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,10 +30,6 @@ public class LoginScreen extends AppCompatActivity {
     Button signUpButton;
     Intent intent;
     UserController conn = UserController.getInstance();
-    static String FILE_NAME = "SharedPref";
-    Context context;
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
 
     /**
      * Creates the ViewMoodList intent and calls upon setListeners()
@@ -48,8 +42,6 @@ public class LoginScreen extends AppCompatActivity {
         setContentView(R.layout.activity_login_screen);
         userName = (EditText) findViewById(R.id.userName);
         intent = new Intent(getApplicationContext(), ViewMoodList.class);
-        context = getApplicationContext();
-        sharedPref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         setListeners();
     }
 
@@ -83,6 +75,8 @@ public class LoginScreen extends AppCompatActivity {
         alert.show();
     }*/
 
+
+
     /**
      * Provides a short toast to current user logging in
      */
@@ -99,23 +93,12 @@ public class LoginScreen extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.Login);
         signUpButton = (Button) findViewById(R.id.Register);
 
-        editor = sharedPref.edit();
-        String user = sharedPref.getString("UserName", null);
-        System.out.println(user);
-        if (user != null) {
-            conn.setCurrentUser(user);
-            hello(user);
-            startActivity(intent);
-        }
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 conn.setCurrentUser(userName.getText().toString());
                 if (conn.getCurrentUser() != null) {
                     hello(userName.getText().toString());
-                    editor.putString("UserName", userName.getText().toString());
-                    editor.commit();
                     startActivity(intent);
                 }
                 else {
@@ -132,8 +115,6 @@ public class LoginScreen extends AppCompatActivity {
                 if (conn.getCurrentUser() == null) {
                     conn.createUser(userName.getText().toString());
                     hello(userName.getText().toString());
-                    editor.putString("UserName", userName.getText().toString());
-                    editor.commit();
                     startActivity(intent);
                 }
                 else {

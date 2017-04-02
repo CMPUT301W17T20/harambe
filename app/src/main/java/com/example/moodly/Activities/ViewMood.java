@@ -1,8 +1,6 @@
 package com.example.moodly.Activities;
 
 import android.Manifest;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,14 +22,12 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.moodly.Controllers.CommentController;
@@ -45,12 +41,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 import static com.example.moodly.Models.Emotion.NONE;
 
@@ -74,6 +65,7 @@ public class ViewMood extends AppCompatActivity {
     private Button viewMoodComment;
     private FloatingActionButton cameraButton;
     private ImageView moodImage;
+    private FloatingActionButton map;
 
     private Uri imageUri;
 
@@ -81,7 +73,6 @@ public class ViewMood extends AppCompatActivity {
     private String imagePath;
     private String setPhotoPath;
     private String base64Encoded;
-    private String date;
 
     private int position = -1;
     private int edit = 0;
@@ -124,6 +115,8 @@ public class ViewMood extends AppCompatActivity {
      */
     protected void setSpinners() {
 
+        /*do we want to hardcode the following?
+        * there probably is a better way to do this using the string resource file*/
         ArrayList<String> emotionList = new ArrayList<>();
         emotionList.add("Choose an emotion");
         emotionList.add("Anger");
@@ -139,6 +132,8 @@ public class ViewMood extends AppCompatActivity {
         emotionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         emotionSpinner.setAdapter(emotionAdapter);
 
+
+        // get views
         ArrayList<String> ssList = new ArrayList<>();
         ssList.add("No social situation");
         ssList.add("Alone");
@@ -166,18 +161,16 @@ public class ViewMood extends AppCompatActivity {
         if (base64Encoded != null) {
             decodeFromBase64(base64Encoded);
         }
-
         if (edit == 0) {
             saveButton = (Button) findViewById(R.id.saveButton);
             cameraButton = (FloatingActionButton) findViewById(R.id.cameraButton);
             editDate = (EditText) findViewById(R.id.view_date);
             editReasonText = (EditText) findViewById(R.id.view_reason);
+            map = (FloatingActionButton) findViewById(R.id.mapButton);
+            editDate.setText(mood.getDate().toString(), TextView.BufferType.EDITABLE);
+            editReasonText.setText(mood.getReasonText(), TextView.BufferType.EDITABLE);
             if (position == -1){
                 viewMoodComment.setEnabled(false);
-            }
-            else {
-                editDate.setText(mood.getDate().toString(), TextView.BufferType.EDITABLE);
-                editReasonText.setText(mood.getReasonText(), TextView.BufferType.EDITABLE);
             }
         }
         else{
@@ -191,6 +184,8 @@ public class ViewMood extends AppCompatActivity {
             emotionSpinner.setEnabled(false);
         }
     }
+    // inherit from a view only class?
+    //@Override
 
     /**
      * Set save button listener to validate
@@ -200,92 +195,49 @@ public class ViewMood extends AppCompatActivity {
     protected void setListeners() {
         if (edit == 0) {
             checkPermissions();
-            // Taken from http://stackoverflow.com/questions/6302057/is-it-possible-that-when-click-edittext-it-will-show-dialog-message 3/29/2017
-            editDate.setClickable(true);
-            editDate.setOnClickListener(new View.OnClickListener() {
-                String time;
-                @Override
-                public void onClick(View v) {
-                    Calendar calendar;
-                    final int year,month,day, hour, minute;
-                    calendar = Calendar.getInstance();
-                    year = calendar.get(Calendar.YEAR);
-                    month = calendar.get(Calendar.MONTH);
-                    day = calendar.get(Calendar.DAY_OF_MONTH);
-                    hour = calendar.get(Calendar.HOUR_OF_DAY);
-                    minute = calendar.get(Calendar.MINUTE);
-
-                    DatePickerDialog dpd = new DatePickerDialog(ViewMood.this, new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            date = String.format("%02d/%02d/%d ",month+1,dayOfMonth,year);
-                            TimePickerDialog tpd = new TimePickerDialog(ViewMood.this, new TimePickerDialog.OnTimeSetListener() {
-                                @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    time = String.format("%02d:%02d",hourOfDay,minute);
-                                    date = date.concat(time);
-                                    editDate.setText(date);
-                                }
-                            }, hour, minute, false);
-                            tpd.setTitle("Select time");
-                            tpd.show();
-                        }
-                    },year,month,day);
-                    dpd.setTitle("Select date");
-                    dpd.show();
-                }
-            });
-
             cameraButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     moodPhoto();
                 }
             });
-
             saveButton.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View v) {
+                    // might be best to do a calendar for the date?
+                    //Date date = editDate.getText().toString();
+                    //mood.setDate(editDate.getText().toD);
+                    // do i need to set it? is it a good idea?
+                    // adds mood to controller/elastic search server
                     String reasonText = editReasonText.getText().toString();
                     String reasonTrimmed = reasonText.trim();
                     int words = reasonTrimmed.isEmpty() ? 0 : reasonTrimmed.split("\\s+").length;
                     Emotion emotionEnumCheck = Emotion.values()[emotionSpinner.getSelectedItemPosition()];
                     if (emotionEnumCheck == NONE) {
-                        // Taken from http://stackoverflow.com/questions/28235689/how-can-an-error-message-be-set-for-the-spinner-in-android 3/8/2017
+                        // http://stackoverflow.com/questions/28235689/how-can-an-error-message-be-set-for-the-spinner-in-android 3/8/2017
                         TextView errorText = (TextView) emotionSpinner.getSelectedView();
                         errorText.setError("");
                         errorText.setTextColor(Color.RED);
                         errorText.setText("Emotion required");
                     }
                     // Taken from http://stackoverflow.com/questions/8924599/how-to-count-the-exact-number-of-words-in-a-string-that-has-empty-spaces-between 3/22/2017
-                    else if(reasonText.length() > 20 || words > 3 ){
+                    else if (reasonText.length() > 20 || words > 3) {
                         editReasonText.setError("Reason must be less than 20 characters or 3 words.");
-                    }
-                    else if (editDate.getText().toString().trim().equals("")) {
-                        editDate.setError("Date is required.");
-                    }
-                    else {
+                    } else {
                         int emotionEnum = emotionSpinner.getSelectedItemPosition();
                         int socialEnum = socialSituationSpinner.getSelectedItemPosition();
-                        if (position == -1 && moodImage.getTag() != null) {
+                        if (position == -1) {
                             setPhotoPath = moodImage.getTag().toString();
-                            compressPhoto(setPhotoPath);
                             base64 = convertToBase64(setPhotoPath);
                             mood.setImage(base64);
                         }
-                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.CANADA);
-                        Date selectedDate = new Date();
-                        try {
-                            selectedDate = sdf.parse(date);
-                        } catch (Exception e) {
-                            Log.i("Error","Could not convert string to date.");
-                        }
-                        mood.setDate(selectedDate);
                         mood.setReasonText(reasonText);
                         mood.setEmotion(emotionEnum);
                         mood.setSocialSituation(socialEnum);
+                        // needed to set the mood?
                         MoodController.getInstance().setMood(mood);
                         MoodController.getInstance().addMood(position, mood);
+                        //MoodController.getInstance().editMood();
                         Intent output = new Intent(ViewMood.this, ViewMoodList.class);
                         setResult(RESULT_OK, output);
                         finish();
@@ -298,11 +250,20 @@ public class ViewMood extends AppCompatActivity {
                 public void onClick(View v) {
                     CommentController.getInstance();
                     Intent intent = new Intent(ViewMood.this, ViewComments.class);
-                    intent.putExtra("moodID",mood.getId());
+                    intent.putExtra("moodID", mood.getId());
                     startActivity(intent);
                 }
             });
+            map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentMap = new Intent();
+                    intentMap.setClass(ViewMood.this, SeeMap.class);
+                    startActivity(intentMap);
+                }
+            });
         }
+
         else{
             addComments.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -363,53 +324,6 @@ public class ViewMood extends AppCompatActivity {
                 moodImage.setImageDrawable(Drawable.createFromPath(imageUri.getPath()));
                 moodImage.setTag(imageUri.getPath());
             }
-        }
-    }
-
-    // Taken from http://stackoverflow.com/questions/477572/strange-out-of-memory-issue-while-loading-an-image-to-a-bitmap-object/ 3/29/2017
-    protected void compressPhoto(String f){
-        final int limit = 60;
-        Bitmap b;
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inJustDecodeBounds = true;
-
-        FileInputStream fis = null;
-
-        try {
-            fis = new FileInputStream(f);
-        } catch (Exception e) {
-            Log.i("Error","File not found");
-        }
-
-        BitmapFactory.decodeStream(fis,null,o);
-
-        try {
-            fis.close();
-        } catch (Exception e) {
-            Log.i("Error","File not closed");
-        }
-
-        int scale = 1;
-        while(o.outWidth / scale / 2 >= limit && o.outHeight / scale / 2 >= limit){
-            scale *= 2;
-        }
-
-        BitmapFactory.Options o2 = new BitmapFactory.Options();
-        o2.inSampleSize = scale;
-
-        try {
-            fis = new FileInputStream(f);
-        } catch (Exception e) {
-            Log.i("Error","File not found");
-        }
-
-        b = BitmapFactory.decodeStream(fis,null,o2);
-        System.out.println(b.getAllocationByteCount());
-
-        try {
-            fis.close();
-        } catch (Exception e) {
-            Log.i("Error","File not closed");
         }
     }
 

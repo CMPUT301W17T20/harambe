@@ -43,7 +43,6 @@ public class TabBase extends Fragment {
     protected ListView displayMoodList;
     protected ArrayList<Mood> moodList = new ArrayList<Mood>();
     protected View rootView;
-    protected Button loadMore;
 
     protected MoodController moodController = MoodController.getInstance();
     protected UserController userController = UserController.getInstance();
@@ -126,7 +125,7 @@ public class TabBase extends Fragment {
      * @param tempUserList list of users (Strings) to match with the moods we want to get
      */
     protected void refreshOnline(ArrayList<String> tempUserList) {
-        moodList = moodController.getMoodList(tempUserList, false);
+        moodList = moodController.getMoodList(tempUserList);
     }
 
     /**
