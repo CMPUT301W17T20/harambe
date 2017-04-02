@@ -34,15 +34,15 @@
         android:id="@+id/filterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/moreMoods"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
         android:clickable="true"
         app:backgroundTint="@color/wallet_hint_foreground_holo_dark"
         app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+        app:srcCompat="@android:drawable/ic_menu_sort_by_size"
+        android:layout_alignTop="@+id/moreMoods"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/moreMoods"
@@ -52,5 +52,19 @@
         tools:text="@string/load_more"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/moreMoods"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_toEndOf="@+id/section_label"
+        android:layout_toRightOf="@+id/section_label"
+        android:clickable="true"
+        app:backgroundTint="@color/wallet_hint_foreground_holo_dark"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/quantum_ic_refresh_white_24" />
 
 </RelativeLayout>

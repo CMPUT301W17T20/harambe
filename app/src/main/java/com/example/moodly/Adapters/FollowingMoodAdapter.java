@@ -151,7 +151,7 @@ public class FollowingMoodAdapter extends ArrayAdapter<Mood> {
             case 7:
                 return "Shame";
             case 8:
-                return "Suprise";
+                return "Surprise";
             default:
                 return "None";
         }

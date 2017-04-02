@@ -17,13 +17,4 @@
         android:orderInCategory="100"
         android:title="Log Out"
         app:showAsAction="never" />
-
-    <item
-        android:id="@+id/refreshButton"
-        android:enabled="true"
-        android:icon="@drawable/quantum_ic_refresh_white_24"
-        android:title="Refresh"
-        android:visible="true"
-        app:showAsAction="ifRoom" />
-
 </menu>

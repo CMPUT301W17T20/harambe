@@ -27,13 +27,12 @@ public class UserController extends ElasticSearchController {
 
     private static UserController instance = null;
     private static User currentUser;
-    private String currentUsername = null; // guessing we can remove this?
     private static ArrayList<User> following;
     private static ArrayList<User> followers;
 
     private UserController() {
-        following = new ArrayList<User>();
-        followers = new ArrayList<User>();
+        following = new ArrayList<>();
+        followers = new ArrayList<>();
     }
 
 

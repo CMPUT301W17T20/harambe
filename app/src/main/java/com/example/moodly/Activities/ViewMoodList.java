@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+import com.example.moodly.Adapters.MoodAdapter;
 import com.example.moodly.Controllers.MoodController;
 import com.example.moodly.Activities.SocialBase;
 import com.example.moodly.Activities.TabBase;
@@ -143,7 +144,6 @@ public class ViewMoodList extends AppCompatActivity {
                     Toast.makeText(this, "Cannot access social tab when offline!", Toast.LENGTH_SHORT).show();
                     return true;
                 }
-
             case R.id.log_out:
                 Toast.makeText(this, "Goodbye, " + UserController.getInstance().getCurrentUser().getName(), Toast.LENGTH_SHORT).show();
                 SharedPreferences.Editor editor =getApplicationContext().getSharedPreferences(LoginScreen.FILE_NAME, Context.MODE_PRIVATE).edit();
@@ -152,7 +152,6 @@ public class ViewMoodList extends AppCompatActivity {
                 Intent logOut = new Intent(this, LoginScreen.class);
                 logOut.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(logOut);
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -173,7 +172,6 @@ public class ViewMoodList extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             // return current tab
-
             switch (position) {
                 case 0:
                     TabHistory tab1 = new TabHistory();
