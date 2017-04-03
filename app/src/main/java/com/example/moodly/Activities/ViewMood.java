@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -23,7 +24,6 @@ import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -74,6 +74,7 @@ public class ViewMood extends AppCompatActivity {
     private Button viewComments;
     private Button viewMoodComment;
     private FloatingActionButton cameraButton;
+    private FloatingActionButton map;
     private ImageView moodImage;
 
     private Uri imageUri;
@@ -87,6 +88,9 @@ public class ViewMood extends AppCompatActivity {
 
     private int position = -1;
     private int edit = 0;
+    private double lat = 0;
+    private double lon = 0;
+
     /**
      * Gets the mood event and position,
      * sets view and listeners to it.
@@ -117,7 +121,6 @@ public class ViewMood extends AppCompatActivity {
             action.setTitle("Viewing Mood Event");
         }
         setViews();
-        setColor();
         setListeners();
     }
 
@@ -165,12 +168,14 @@ public class ViewMood extends AppCompatActivity {
         socialSituationSpinner.setSelection(mood.getSocialSituation());
         moodImage = (ImageView) findViewById(R.id.moodImage);
         viewMoodComment = (Button) findViewById(R.id.viewMoodComments);
+        map = (FloatingActionButton) findViewById(R.id.mapButton);
         base64Encoded = mood.getImage();
         if (base64Encoded != null) {
             decodeFromBase64(base64Encoded);
         }
 
         if (edit == 0) {
+            // set editable location pin if not null
             saveButton = (Button) findViewById(R.id.saveButton);
             cameraButton = (FloatingActionButton) findViewById(R.id.cameraButton);
             editDate = (EditText) findViewById(R.id.view_date);
@@ -185,6 +190,7 @@ public class ViewMood extends AppCompatActivity {
             }
         }
         else{
+            // set Location pin if not null
             addComments = (Button)findViewById(R.id.addComments);
             viewComments = (Button) findViewById(R.id.viewComments);
             viewDate = (TextView) findViewById(R.id.view_date);
@@ -239,7 +245,6 @@ public class ViewMood extends AppCompatActivity {
                     dpd.show();
                 }
             });
-
             cameraButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -253,8 +258,8 @@ public class ViewMood extends AppCompatActivity {
                     String reasonText = editReasonText.getText().toString();
                     String reasonTrimmed = reasonText.trim();
                     int words = reasonTrimmed.isEmpty() ? 0 : reasonTrimmed.split("\\s+").length;
-                    int emotionEnumCheck = emotionSpinner.getSelectedItemPosition();
-                    if (emotionEnumCheck == 0) {
+                    Emotion emotionEnumCheck = Emotion.values()[emotionSpinner.getSelectedItemPosition()];
+                    if (emotionEnumCheck == NONE) {
                         // Taken from http://stackoverflow.com/questions/28235689/how-can-an-error-message-be-set-for-the-spinner-in-android 3/8/2017
                         TextView errorText = (TextView) emotionSpinner.getSelectedView();
                         errorText.setError("");
@@ -283,6 +288,9 @@ public class ViewMood extends AppCompatActivity {
                             selectedDate = sdf.parse(date);
                         } catch (Exception e) {
                             Log.i("Error","Could not convert string to date.");
+                        }
+                        if (lat != 0 && lon != 0) {
+                            mood.setLocation(lat, lon);
                         }
                         if (date == null){
                             mood.setDate(currentDate);
@@ -349,6 +357,33 @@ public class ViewMood extends AppCompatActivity {
                 }
             });
         }
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentMap = new Intent();
+                intentMap.setClass(ViewMood.this, SeeMap.class);
+                Mood.GeoLocation setLocation = mood.getLocation();
+                if (position != 1)
+                {
+                    Double oldLat = setLocation.lat;
+                    Double oldLon = setLocation.lon;
+                    intentMap.putExtra("lat", oldLat);
+                    intentMap.putExtra("lon", oldLon);
+                }
+                if (edit != 0) {
+                    intentMap.putExtra("editable", 1);
+                    if (setLocation.lat == 0 && setLocation.lon == 0){
+                        Toast.makeText(ViewMood.this,"User has not set a location.",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        startActivityForResult(intentMap,1);
+                    }
+                }
+                else {
+                    startActivityForResult(intentMap, 1);
+                }
+            }
+        });
 
     }
 
@@ -371,6 +406,12 @@ public class ViewMood extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 moodImage.setImageDrawable(Drawable.createFromPath(imageUri.getPath()));
                 moodImage.setTag(imageUri.getPath());
+            }
+        }
+        else{
+            if (resultCode == RESULT_OK){
+                lat = intent.getDoubleExtra("lat",0);
+                lon = intent.getDoubleExtra("long",0);
             }
         }
     }
@@ -465,44 +506,4 @@ public class ViewMood extends AppCompatActivity {
         }
     }
 
-    protected void setActivityBackgroundColor(int color) {
-        View view = this.getWindow().getDecorView();
-        view.setBackgroundColor(color);
-    }
-
-    protected void setColor(){
-        int mood = emotionSpinner.getSelectedItemPosition();
-
-        if (mood == 1) {setActivityBackgroundColor(Color.parseColor("#f1646c"));}
-        if (mood == 2) {setActivityBackgroundColor(Color.parseColor("#B39DDB"));}
-        if (mood == 3) {setActivityBackgroundColor(Color.parseColor("#9dd5c0"));}
-        if (mood == 4) {setActivityBackgroundColor(Color.parseColor("#fac174"));}
-        if (mood == 5) {setActivityBackgroundColor(Color.parseColor("#FFF176"));}
-        if (mood == 6) {setActivityBackgroundColor(Color.parseColor("#27a4dd"));}
-        if (mood == 7) {setActivityBackgroundColor(Color.parseColor("#f39cc3"));}
-        if (mood == 8) {setActivityBackgroundColor(Color.parseColor("#FFFFFF"));}
-
-        emotionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int mood = emotionSpinner.getSelectedItemPosition();
-
-                if (mood == 1) {setActivityBackgroundColor(Color.parseColor("#f1646c"));}
-                if (mood == 2) {setActivityBackgroundColor(Color.parseColor("#B39DDB"));}
-                if (mood == 3) {setActivityBackgroundColor(Color.parseColor("#9dd5c0"));}
-                if (mood == 4) {setActivityBackgroundColor(Color.parseColor("#fac174"));}
-                if (mood == 5) {setActivityBackgroundColor(Color.parseColor("#FFF176"));}
-                if (mood == 6) {setActivityBackgroundColor(Color.parseColor("#27a4dd"));}
-                if (mood == 7) {setActivityBackgroundColor(Color.parseColor("#f39cc3"));}
-                if (mood == 8) {setActivityBackgroundColor(Color.parseColor("#FFFFFF"));}
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //Another interface callback
-            }
-        });
-
-    }
 }
-

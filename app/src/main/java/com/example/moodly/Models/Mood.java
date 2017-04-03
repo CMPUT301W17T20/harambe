@@ -201,7 +201,7 @@ public class Mood {
     private Integer socialSituation;
     private GeoLocation geo_location;
 
-    private class GeoLocation {
+    public class GeoLocation {
 
         public double lat;
 

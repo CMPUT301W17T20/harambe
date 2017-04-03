@@ -12,6 +12,8 @@
     <string name="username">Username</string>
     <string name="load_more">Load More Moods</string>
     <string name="load_comments">Load More Comments</string>
+    <string name="set_location">Save Location</string>
+    <string name="cancel">Cancel</string>
     <string name="Register">Sign Up</string>
     <string name="mood_list_header">History</string>
     <string name="date">Date</string>
