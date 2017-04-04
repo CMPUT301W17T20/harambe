@@ -2,16 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.moodly.Activities.SocialBase$PlaceholderFragment"
     >
     <EditText
         android:id="@+id/search_text"
         android:listSelector="@android:color/darker_gray"
-        android:layout_width="249dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -21,7 +17,7 @@
         android:id="@+id/display_search_list"
         android:layout_width="match_parent"
         android:listSelector="@android:color/darker_gray"
-        android:layout_height="263dp"
+        android:layout_height="match_parent"
         android:scrollbars="vertical"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -37,7 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/send_request_button" />
 
     <Button
@@ -46,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:layout_toEndOf="@+id/search_text"
         android:text="@string/search_button"
         android:layout_above="@+id/display_search_list"

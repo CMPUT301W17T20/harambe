@@ -10,13 +10,14 @@
 
 
     <Button
-        android:layout_width="wrap_content"
         android:id="@+id/okbutton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
-        android:text="ok"
-        android:padding="10dp"
         android:layout_marginTop="20dp"
-        android:paddingRight="10dp"/>
+        android:padding="10dp"
+        android:paddingRight="10dp"
+        android:text="ok" />
 
 </fragment>

@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/gradient">
+
 
     <ImageView
         android:id="@+id/moodImage"
@@ -128,13 +130,14 @@
 
     <Button
         android:id="@+id/addComments"
-        style="@android:style/Widget.Material.Button.Colored"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_toEndOf="@+id/mapButton"
         android:text="@string/add_comment"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
         tools:text="@string/add_comment" />
 
     <Button
